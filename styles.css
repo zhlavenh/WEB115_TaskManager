@@ -1,0 +1,21 @@
+header {
+    font-weight: bold;
+    text-align: center;
+}
+
+form {
+    text-align: center;
+    display: flex;
+}
+
+.formInputs {
+    display: inline-block;
+}
+
+#taskmanager {
+    text-align: center;
+}
+
+table {
+    display: inline-block;
+}
