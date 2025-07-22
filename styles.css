@@ -1,21 +1,72 @@
 header {
-    font-weight: bold;
+    font-family: "Bitcount Single";
+    font-size: 10em;
+    font-weight: 400;
     text-align: center;
 }
 
-form {
+#mainBody {
+    display: inline;
     text-align: center;
-    display: flex;
+}
+
+#taskForm {
+    margin: auto;
+    font-size: 3em;
+    width: 100%;
 }
 
 .formInputs {
-    display: inline-block;
+    display: inline-flex;
+    margin: auto;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
-#taskmanager {
+
+.formInputs input[type=text]{
+    width: 150%;
+    height: 40px
+}
+
+
+.formInputs input[type=checkbox] {
+    width: 50%;
+    height: 50%;
+}
+
+.formInputs button{
+    width: 100px;
+    height: 100px;
+    font-size: large;
+    border-radius: 15%;
+}
+
+select {
+    width: 100%;
+    font-size: 25px;
     text-align: center;
 }
 
+
+#taskmanager {
+    margin: auto;
+    width: 100%;
+    font-size: 2em;
+
+}
+
 table {
-    display: inline-block;
+    margin: auto;
+    text-align: center;
+    width: 70%;
+}
+
+thead {
+    background-color: bisque;
+}
+
+tbody input[type=checkbox]{
+    width: 25px;
+    height: 25px;
 }

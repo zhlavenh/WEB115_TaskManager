@@ -6,13 +6,21 @@ document.getElementById("taskForm").addEventListener("submit", function(e){
     e.preventDefault();
     let form = document.forms[0];
     let taskValue = form.taskText.value;
-    let taskPriority = form.taskPriority.value;
-    let importance = form.importance.checked;
-    let dateAdded = new Date().toDateString();
+    // Input Validation
+    if (taskValue === ''){alert('Task cannot be blank!'); e.preventDefault();}
+    else{
+        let taskPriority = form.taskPriority.value;
+        let importance = form.importance.checked;
+        let dateAdded = new Date().toDateString();
 
-    let taskObj = {id: "", name: taskValue, priority: taskPriority, isImportant: importance, isCompleted: false, date: dateAdded};
-    addItem(taskObj);
-    updateList();
+        let taskObj = {id: "", name: taskValue, priority: taskPriority, isImportant: importance, isCompleted: false, date: dateAdded};
+        
+        
+        addItem(taskObj);
+        updateList();
+    }
+
+
 });
 
 // Add item to list
@@ -31,6 +39,7 @@ function updateList(){
     else{
         for (i=0; i<taskArray.length; i++){
             document.getElementById("taskTable").innerHTML += ('<tr class="task' + taskArray[i].id + '"><td>' + taskArray[i].name + '</td><td>' + taskArray[i].date + '</td><td>' + taskArray[i].priority + '</td><td><input type="checkbox" class="completedTask" name="' + taskArray[i].id + '"></td><td><button type="button" class="deleteTask" name="' + taskArray[i].id + '">Delete</button></td></tr>');
+            // Highlight important task in red
             if (taskArray[i].isImportant){document.querySelector(".task" + i).setAttribute("style", "color: red;");}
         }
     }
@@ -44,14 +53,14 @@ function updateList(){
     console.log(JSON.stringify(taskArray));
 }
 
-// Remove from list
+// Remove tasks from list
 function removeTask(e){
     if (taskArray.length > 1){taskArray.splice(e.target.name,1);}
     else{taskArray = [];}
     updateList();
 }
 
-// Highlight important task in red
+
 
 
 // Strike through completed tasks
@@ -59,11 +68,13 @@ function strikeTasks(e){
     let currentTask = taskArray[e.target.name];
     if (e.target.checked){
         currentTask.isCompleted = true;
+        // Keep original sytling and add stirke through
         if (taskArray[currentTask.id].isImportant){document.querySelector(".task" + currentTask.id).setAttribute("style", "color: red; text-decoration: line-through;");}
         else{document.querySelector(".task" + currentTask.id).setAttribute("style", "text-decoration: line-through;");}
     }
     else {
         currentTask.isCompleted = false;
+        // Keep OG stylings and remove strikethrough
         if (taskArray[currentTask.id].isImportant){document.querySelector(".task" + currentTask.id).setAttribute("style", "color: red; text-decoration: ;");}
         else{
         document.querySelector(".task" + currentTask.id).setAttribute("style", "text-decoration: ;");}
